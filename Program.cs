@@ -4,76 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Banco_3_Cliente
+namespace Cargar 
 {
-    class Cliente
+    class Operarios
     {
-        private string nombre;
-        private int monto;
+        private int[] sueldos;
 
-        public Cliente(string nom)
+        public Operarios()
         {
-            nombre = nom;
-            monto = 0;
-        }
-
-        public void Depositar(int m)
-        {
-            monto = monto + m;
-        }
-
-        public void Extraer(int m)
-        {
-            monto = monto - m;
-        }
-
-        public int RetornarMonto()
-        {
-            return monto;
+            sueldos = new int[5];
+            for (int f = 0; f < sueldos.Length; f++)
+            {
+                Console.Write("Ingrese el sueldo:");
+                string linea = Console.ReadLine();
+                sueldos[f] = int.Parse(linea);
+            }
         }
 
         public void Imprimir()
         {
-            Console.WriteLine(nombre + " Tiene depositado la suma de " + monto);
-        }
-    }
-
-    class Banco
-    {
-        private Cliente cliente1, cliente2, cliente3;
-
-        public Banco()
-        {
-            cliente1 = new Cliente(" Manuel ");
-            cliente2 = new Cliente(" Antonio ");
-            cliente3 = new Cliente(" Ronal ");
-        }
-
-        public void Operar()
-        {
-            cliente1.Depositar(800);
-            cliente2.Depositar(500);
-            cliente3.Depositar(600);
-            cliente3.Extraer(250);
-        }
-
-        public void DepositosTotales()
-        {
-            int t = cliente1.RetornarMonto() +
-                    cliente2.RetornarMonto() +
-                    cliente3.RetornarMonto();
-            Console.WriteLine("  El total de dinero en el banco es:   " + t);
-            cliente1.Imprimir();
-            cliente2.Imprimir();
-            cliente3.Imprimir();
+            for (int f = 0; f < sueldos.Length; f++)
+            {
+                Console.WriteLine(sueldos[f]);
+            }
+            Console.ReadKey();
         }
 
         static void Main(string[] args)
         {
-            Banco banco1 = new Banco();
-            banco1.Operar();
-            banco1.DepositosTotales();
-            Console.ReadKey();
+            Operarios op = new Operarios();
+            op.Imprimir();
         }
     }
 }
